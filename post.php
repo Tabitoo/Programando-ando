@@ -2,12 +2,14 @@
 session_start();
 $user_name = $_SESSION["user"];
 if ($q= mysqli_connect("127.0.0.1", "root", "")) {
-    //se obtiene el id del post seleccionado en "home.php" para poder mostrar su contenido 
+    //se obtiene el id del post seleccionado en "home.php" para poder mostrar su contenido
     $id =  $_GET["id"];
     mysqli_select_db($q, "foro");
 } else {
   echo "error al conectar a base de datos";
 }
+
+
 
 
  ?>
@@ -63,16 +65,38 @@ if ($q= mysqli_connect("127.0.0.1", "root", "")) {
 
 
         <div class="main-content__caja1">
-          <form class="main-content__caja1-form" action="configuracion/config_comment.php " method="post">
+          <form class="main-content__caja1-form" action="" method="get">
             <h3>comentar</h3>
             <input type="hidden" name="id_number" value="<?php echo $id_number; ?>">
             <input type="hidden" name="post_id" value="<?php echo $post_id; ?>">
             <input type="hidden" name="name_user" value="<?php echo $user_name; ?>">
+            <input type="hidden" name="id" value="<?php echo $id; ?>">
             <textarea name="contenido" rows="8" cols="180" required></textarea>
 
             <input type="submit" name="" value="post">
 
           </form>
+
+          <?php
+          $id1 = $_GET["post_id"];
+          $user_name = $_GET["name_user"];
+          $contenido = $_GET["contenido"];
+
+          if ($conexion = mysqli_connect("127.0.0.1", "root", "")) {
+            mysqli_select_db($conexion, "foro");
+            $reg = "INSERT INTO comentarios(id, nombre_user, comentario, post_id) VALUES ('', '$user_name', '$contenido', '$id1')";
+            if (mysqli_query($conexion, $reg)) {
+
+            } else {
+                echo "error al almacenar comentario";
+                exit();
+            }
+          }
+
+
+
+
+           ?>
 
         </div>
         <?php

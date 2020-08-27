@@ -1,4 +1,7 @@
+/
 <?php
+//Pagina que queda de backup en caso de que la subida de comentarios en post.php no funcione
+/*
 session_start();
 $id = $_POST["post_id"];
 $user_name = $_POST["name_user"];
@@ -10,13 +13,17 @@ if ($conexion = mysqli_connect("127.0.0.1", "root", "")) {
   if (mysqli_query($conexion, $reg)) {
 
   } else {
-      echo "error al almacenar usuario";
+      echo "error al almacenar comentario";
       exit();
   }
 }
 
 
+
  ?>
+
+
+
 
  <!DOCTYPE html>
  <html lang="en" dir="ltr">
@@ -72,3 +79,4 @@ if ($conexion = mysqli_connect("127.0.0.1", "root", "")) {
      </div>
    </body>
  </html>
+*/
